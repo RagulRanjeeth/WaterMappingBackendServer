@@ -55,7 +55,7 @@ app.post('/sensor', (req, res) => {
 });
 
 // Create HTTP server
-const PORT = 8081;
+const PORT = 8080;
 const server = http.createServer(app);
 server.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
