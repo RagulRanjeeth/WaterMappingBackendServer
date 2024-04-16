@@ -34,7 +34,7 @@ const SensorData = mongoose.model('SensordataWaterqualitymanagement', sensorData
 
 //SensorData.insertMany([sensorDataSchema1])
 app.get('/sensor', (req, res) => {
-  res.send('Welcome to my HTTP page!');
+  res.send('Welcome ');
 });
 
 // Endpoint to handle incoming sensor data
