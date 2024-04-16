@@ -29,7 +29,7 @@ const sensorDataSchema = new mongoose.Schema({
   }
 });
 
-const SensorData = mongoose.model('SensordataWaterqualitymanagement', sensorDataSchema);
+const SensorData = mongoose.model('sensordatawaterqualitymanagements', sensorDataSchema);
 
 // Route to handle root endpoint
 app.get('/', (req, res) => {
@@ -37,7 +37,7 @@ app.get('/', (req, res) => {
 });
 
 // Route to handle incoming sensor data
-app.post('/sensor', (req, res) => {
+app.get('/sensor', (req, res) => {
   const sensorData = req.body;
   console.log('Received sensor data:', sensorData);
 
