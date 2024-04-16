@@ -19,7 +19,7 @@ mongoose.connect("mongodb+srv://ragulranjeeth2105116:Ragul655@watermappingcluste
 
 // Define schema and model for sensor data
 const sensorDataSchema = new mongoose.Schema({
-  value: {
+  values: {
     type: Number,
     required: true
   },
@@ -38,11 +38,11 @@ app.get('/', (req, res) => {
 
 // Route to handle incoming sensor data
 app.get('/sensor', (req, res) => {
-  const sensorData = req.body;
+  const sensorData = req.query.sensorvalues;
   console.log('Received sensor data:', sensorData);
 
   // Save the sensor data to MongoDB
-  const newData = new SensorData({ value: sensorData.value });
+  const newData = new SensorData({ values: sensorData.value });
   newData.save()
     .then(() => {
       console.log('Sensor data saved to MongoDB');
