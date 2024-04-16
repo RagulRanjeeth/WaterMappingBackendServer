@@ -34,7 +34,7 @@ app.get('/', (req, res) => {
 
 // Route to handle incoming sensor data
 app.post('/sensor', (req, res) => {
-  const sensorData = req.body;
+  const sensorData = 116;
   console.log('Received sensor data:', sensorData);
 
   // Save the sensor data to MongoDB
