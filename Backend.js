@@ -22,10 +22,6 @@ const sensorDataSchema = new mongoose.Schema({
   values: {
     type: Number,
     required: true
-  },
-  timestamp: {
-    type: Date,
-    default: Date.now
   }
 });
 
@@ -38,11 +34,11 @@ app.get('/', (req, res) => {
 
 // Route to handle incoming sensor data
 app.get('/sensor', (req, res) => {
-  const sensorData = req.query.sensorvalues;
-  console.log('Received sensor data:', sensorData);
+  const sensorData = req.query.sensorvalue; // Accessing sensor data from query parameters
+  res.send('Received sensor data:', sensorData);
 
   // Save the sensor data to MongoDB
-  const newData = new SensorData({ values: sensorData.value });
+  const newData = new SensorData({ values: sensorData });
   newData.save()
     .then(() => {
       console.log('Sensor data saved to MongoDB');
