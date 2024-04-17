@@ -33,21 +33,21 @@ app.get('/', (req, res) => {
 });
 
 // Route to handle incoming sensor data
-app.post('/sensor', (req, res) => {
-  const sensorData = 116;
-  console.log('Received sensor data:', sensorData);
+app.post('/sensor', async(req, res) => {
+  const { value } = req.body;
 
-  // Save the sensor data to MongoDB
-  const newData = new SensorData({ values: sensorData.sensorvalue });
-  newData.save()
-    .then(() => {
-      console.log('Sensor data saved to MongoDB');
-      res.status(201).send('Sensor data saved successfully');
-    })
-    .catch((err) => {
-      console.error('Error saving sensor data to MongoDB:', err);
-      res.status(500).send('Internal server error');
-    });
+  try {
+    // Create a new sensor data document
+    const newData = new SensorData({ value });
+
+    // Save the document to the database
+    await newData.save();
+    console.log('Sensor data saved to MongoDB');
+    res.status(201).json({ message: 'Sensor data saved successfully' });
+  } catch (err) {
+    console.error('Error saving sensor data to MongoDB:', err);
+    res.status(500).json({ error: 'Internal server error' });
+  }
 });
 
 // Create HTTP server
