@@ -25,7 +25,7 @@ const sensorDataSchema = new mongoose.Schema({
   }
 });
 
-const SensorData = mongoose.model('SensorData', sensorDataSchema);
+const SensorData = mongoose.model('sensordatawaterqualitymanagements', sensorDataSchema);
 
 // Route to handle root endpoint
 app.get('/', (req, res) => {
