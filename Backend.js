@@ -29,7 +29,7 @@ const SensorData = mongoose.model('sensordatawaterqualitymanagements', sensorDat
 
 // Route to handle root endpoint
 app.get('/', (req, res) => {
-  res.send('You will be successful');
+  res.send('You will be successful Ragul');
 });
 
 // Route to handle incoming sensor data (POST request)
