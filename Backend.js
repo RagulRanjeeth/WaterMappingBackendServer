@@ -33,22 +33,13 @@ app.get('/', (req, res) => {
 });
 
 // Route to handle incoming sensor data
-app.post('/sensor', async(req, res) => {
-  const { value } = req.body;
-
-  try {
-    // Create a new sensor data document
-    const newData = new SensorData({ value });
-
-    // Save the document to the database
-    await newData.save();
-    console.log('Sensor data saved to MongoDB');
-    res.status(201).json({ message: 'Sensor data saved successfully' });
-  } catch (err) {
-    console.error('Error saving sensor data to MongoDB:', err);
-    res.status(500).json({ error: 'Internal server error' });
-  }
-});
+axios.post('https://watermappingbackendserverwork.onrender.com/sensor', {
+  userId: 1,
+  title: "Fix my bugs",
+  completed: false
+})
+.then((response) => console.log(response.data))
+.then((error) => console.log(error));
 
 // Create HTTP server
 const PORT = 8080;
