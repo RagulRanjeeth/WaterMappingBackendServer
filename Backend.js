@@ -25,7 +25,7 @@ const sensorDataSchema = new mongoose.Schema({
   }
 });
 
-const SensorData = mongoose.model('sensordatawaterqualitymanagements', sensorDataSchema);
+const SensorData = mongoose.model('SensorData', sensorDataSchema);
 
 // Route to handle root endpoint
 app.get('/', (req, res) => {
@@ -33,16 +33,25 @@ app.get('/', (req, res) => {
 });
 
 // Route to handle incoming sensor data
-axios.post('https://watermappingbackendserverwork.onrender.com/sensor', {
-  userId: 1,
-  title: "Fix my bugs",
-  completed: false
-})
-.then((response) => console.log(response.data))
-.then((error) => console.log(error));
+app.post('/sensor', async (req, res) => {
+  try {
+    // Assuming incoming sensor data is in the request body
+    const { values } = req.body;
+
+    // Create a new sensor data document
+    const newSensorData = new SensorData({ values });
+    // Save the new document to the database
+    await newSensorData.save();
+
+    res.status(201).json({ message: 'Sensor data received and stored successfully' });
+  } catch (error) {
+    console.error("Error storing sensor data:", error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
 
 // Create HTTP server
-const PORT = 8080;
+const PORT = 8081;
 const server = http.createServer(app);
 server.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
