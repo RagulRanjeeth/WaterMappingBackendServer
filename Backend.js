@@ -64,7 +64,7 @@ router.get('/sensor', (req, res) => {
 });
 
 // Mount the router on /api path
-app.use('/api', router);
+app.use('/sensor', router);
 
 // Create HTTP server
 const PORT = 8081;
